@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Recipie</title>
+</head>
+<body>
+    <div class="nav">
+        <h1>Welcome {{user_name}}</h1>
+        <div class="nav_right">
+            <a href="/dashboard">back to recipies</a>
+            <form action="/logout">
+                <button>Logout</button>
+            </form>
+        </div>
+    </div>
+    <div class="body">
+        <div class="bodytop">
+            <h2>{{recipie.name}}</h2>
+            <p>Posted by: {{recipie.creator}}</p>
+        </div>
+        <div class="content">
+                <div class="reccontent">
+                    <p>Description:</p>
+                    <p class="pcontent">{{recipie.description}}</p>      
+                </div>
+                <div class="reccontent">
+                    <p class="pcontent">Under 30 Minutes?</p>
+                    {% if recipie.under_thrity == 0 %}
+                        <p class="pcontent">No</p>
+                    {% elif recipie.under_thrity == 1 %}
+                        <p class="pcontent">Yes</p>
+                    {% endif %}
+                </div>
+                <div class="reccontent">
+                    <p class="pcontent">Instructions:</p>
+                    <p class="pcontent" id="instructions">{{recipie.instructions}}</p>
+                </div>
+                <div class="reccontent">
+                    <p class="pcontent">Date Made:</p>
+                    <p class="pcontent">{{recipie.password}}</p>
+                </div>
+                
+                
+                
+                
+                
+                
+                
+                
+
+
+        </div>
+    </div>
+
+    
+</body>
+</html>

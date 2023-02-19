@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Recipie Share</title>
+</head>
+<body>
+    <div class="nav">
+        <h1>Add a New Recipie!</h1>
+        <div class="nav_right">
+            <a href="/dashboard">back to recipies</a>
+            <form action="/logout">
+                <button>Logout</button>
+            </form>
+        </div>
+    </div>
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+            <p class="error" id="newrecerror">{{message}}</p>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+
+    <form action="/recipies/save" method="POST" class="createform">
+        <div class="formleft">
+            <label for="recipie_name">Name:</label>
+            <input type="text" name="recipie_name">
+            <label for="description">Description: </label>
+            <textarea name="description" id="" cols="30" rows="5"></textarea>
+            <label for="instructions">instructions: </label>
+            <textarea name="instructions" id="" cols="30" rows="5"></textarea>
+        </div>
+        <div class="formright">
+            <p>Date Cooked/Made</p>
+            <input type="date" name="date_made">
+            <p>Under 30 Minutes:</p>
+            <input type="radio" name="under_thirty" value='1' required="required">Yes </input>
+            <input type="radio" name="under_thirty" value='0' required="required">No</input>
+
+        <button>Submit</button>            
+        </div>
+
+    </form>
+    
+</body>
+</html>

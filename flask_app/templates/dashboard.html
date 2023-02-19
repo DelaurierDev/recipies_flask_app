@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="nav">
+        <h1>Welcome {{user_name}}</h1>
+        <div class="nav_right">
+            <a href="/recipies/new">+ Create</a>
+            <form action="/logout">
+                <button>Logout</button>
+            </form>
+        </div>
+    </div>
+    <div class="main">
+        <h2>All posted recipies:</h2>
+        <table>
+            <thead>
+                    <tr>
+                    <th>Name</th>
+                    <th>Under</th>
+                    <th>Posted By</th>
+                    <th>Actions</th>                        
+                    </tr>
+            </thead>
+            <tbody>
+                {% for recipie in recipies %}
+                    <tr>
+                    <td>{{recipie['recipie_name']}}</td>
+                    {% if recipie['under_thrity'] == 1 %}
+                    <td>Yes</td>
+                    {% endif %}
+                    {% if recipie['under_thrity'] == 0 %}
+                    <td>No</td>
+                    {% endif %}
+                    <td>{{recipie['first_name']}}</td>
+                    {% if user_id == recipie['users_id'] %}
+                        <td>
+                            <a href="/recipies/{{recipie['id']}}/edit">Edit</a>
+                            <a href="/recipies/{{recipie['id']}}/delete">Delete</a>                            
+                        </td>
+                    {% else %}
+                        <td>
+                            <a href="/recipies/{{recipie['id']}}/view">View</a>
+                        </td>
+                    {% endif %}
+                {% endfor %}   
+                    </tr>
+                    
+            </tbody>
+        </table>
+    </div>
+    
+    
+</body>
+</html>
